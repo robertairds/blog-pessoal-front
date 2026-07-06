@@ -5,6 +5,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import type Tema from "../../../models/Tema";
 import { buscar } from "../../../services/Service";
 import CardTema from "../cardtema/CardTema";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function ListaTemas() {
 
@@ -19,7 +20,7 @@ const token = usuario.token;
 
 useEffect(() => {
     if (token === '') {
-        alert('Você precisa estar logado!');
+        ToastAlerta('Você precisa estar logado!', 'info');
         navigate('/');
     }
 }, [token]);
@@ -49,23 +50,23 @@ async function buscarTemas() {
      {isLoading && (
     <SyncLoader
         color="#312e81"
-    	size={32}
-	/>
+        size={32}
+    />
 )}
       <div className="flex justify-center w-full my-4">
         <div className="container flex flex-col">
 
           {(!isLoading && temas.length === 0) && (
-	<span className="text-3xl text-center my-8">
-		Nenhum Tema foi encontrado!
-	</span>
+    <span className="text-3xl text-center my-8">
+        Nenhum Tema foi encontrado!
+    </span>
 )}
 
           <div className="grid grid-cols-1 md:grid-cols-2
-                          lg:grid-cols-3 gap-8">
+                        lg:grid-cols-3 gap-8">
             {
     temas.map((tema) => (
-    	<CardTema key={tema.id} tema={tema}/>
+        <CardTema key={tema.id} tema={tema}/>
     ))
 }
           </div>

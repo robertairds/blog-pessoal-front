@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import type Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Service";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 function Cadastro() {
   const navigate = useNavigate()
@@ -47,12 +48,13 @@ async function cadastrarNovoUsuario(e: FormEvent<HTMLFormElement>){
 
     try{
       await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuario)
-      alert('Usuário cadastrado com sucesso!')
+      ToastAlerta("Usuário cadastrado com sucesso!", "sucesso");
     }catch(error){
       alert('Erro ao cadastrar o usuário!')
     }
   }else{
-    alert('Dados do usuário inconsistentes! Verifique as informações do cadastro.')
+    ToastAlerta("Os dados do Usuário são inconsistentes! Verifique as informações.", "erro");
+// ou conforme o texto original do seu alert de erro no arquivo
     setUsuario({...usuario, senha: '' })
     setConfirmarSenha('')
   }

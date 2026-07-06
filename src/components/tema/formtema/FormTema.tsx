@@ -4,7 +4,7 @@ import { ClipLoader } from "react-spinners";
 import { AuthContext } from "../../../contexts/AuthContext";
 import type Tema from "../../../models/Tema";
 import { buscar, atualizar, cadastrar } from "../../../services/Service";
-
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function FormTema() {
 
@@ -33,7 +33,7 @@ async function buscarPorId(id: string) {
 
 useEffect(() => {
   if (token === '') {
-    alert('Você precisa estar logado!');
+    ToastAlerta('Você precisa estar logado!', 'info');
     navigate('/');
   }
 }, [token]);
@@ -65,12 +65,12 @@ async function gerarNovoTema(e: FormEvent<HTMLFormElement>) {
         headers: { 'Authorization': token }
       });
 
-      alert('O Tema foi atualizado com sucesso!');
+      ToastAlerta('O Tema foi atualizado com sucesso!', 'sucesso');
     } catch (error: any) {
       if (error.toString().includes('401')) {
         handleLogout();
       } else {
-        alert('Erro ao atualizar o tema.');
+        ToastAlerta('Erro ao atualizar o tema.', 'erro');
       }
     }
   } else {
@@ -79,12 +79,12 @@ async function gerarNovoTema(e: FormEvent<HTMLFormElement>) {
         headers: { 'Authorization': token }
       });
 
-      alert('O Tema foi cadastrado com sucesso!');
+      ToastAlerta('O Tema foi cadastrado com sucesso!', 'sucesso');
     } catch (error: any) {
       if (error.toString().includes('401')) {
         handleLogout();
       } else {
-        alert('Erro ao cadastrar o tema.');
+        ToastAlerta('Erro ao cadastrar o tema.', 'erro');
       }
     }
   }
@@ -92,7 +92,6 @@ async function gerarNovoTema(e: FormEvent<HTMLFormElement>) {
   setIsLoading(false);
   retornar();
 }
-
 
     return (
         <div className="container flex flex-col items-center justify-center mx-auto">
