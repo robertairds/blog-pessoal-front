@@ -54,7 +54,6 @@ async function cadastrarNovoUsuario(e: FormEvent<HTMLFormElement>){
     }
   }else{
     ToastAlerta("Os dados do Usuário são inconsistentes! Verifique as informações.", "erro");
-// ou conforme o texto original do seu alert de erro no arquivo
     setUsuario({...usuario, senha: '' })
     setConfirmarSenha('')
   }
@@ -62,91 +61,89 @@ async function cadastrarNovoUsuario(e: FormEvent<HTMLFormElement>){
   setIsLoading(false)
 }
 
-
-
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 h-screen w-full">
-      {/* Imagem à esquerda */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 h-screen w-full bg-[#1b1417] text-[#d6c7cb]">
+      {/* Imagem à esquerda alterada para a nova imagem com tons góticos */}
       <div
-        className="bg-[url('https://i.imgur.com/ZZFAmzo.jpg')] lg:block hidden bg-no-repeat w-full h-full bg-cover bg-center"
+        className="bg-[url('/login-bg.jpg')] lg:block hidden bg-no-repeat w-full h-full bg-cover bg-center filter brightness-90"
       ></div>
 
       {/* Container limitador e centralizador do formulário */}
-      <div className="flex justify-center items-center w-full py-6 px-8">
-        <form className="flex justify-center items-center flex-col w-full max-w-md gap-4"
+      <div className="flex justify-center items-center w-full py-6 px-8 bg-[#1b1417]">
+        <form className="flex justify-center items-center flex-col w-full max-w-md gap-4 bg-[#231b1f] p-10 rounded-2xl border border-[#3d2c33] shadow-2xl"
           onSubmit={cadastrarNovoUsuario}>
           
-          <h2 className="text-slate-900 text-5xl font-bold mb-2">Cadastrar</h2>
+          <h2 className="text-[#f5eaec] text-5xl font-bold mb-2 tracking-wide">Cadastrar</h2>
           
           <div className="flex flex-col w-full">
-            <label htmlFor="nome">Nome</label>
+            <label htmlFor="nome" className="text-[#c4b3b8] mb-1">Nome</label>
             <input
               type="text"
               id="nome"
               name="nome"
               placeholder="Nome"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-[#523d45] bg-[#1b1417] text-[#f0e6e8] rounded p-2 focus:outline-none focus:border-[#b8869b] transition-colors"
               value = {usuario.nome}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
 
           <div className="flex flex-col w-full">
-            <label htmlFor="usuario">Usuário</label>
+            <label htmlFor="usuario" className="text-[#c4b3b8] mb-1">Usuário</label>
             <input
               type="text"
               id="usuario"
               name="usuario"
               placeholder="Usuário"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-[#523d45] bg-[#1b1417] text-[#f0e6e8] rounded p-2 focus:outline-none focus:border-[#b8869b] transition-colors"
               value = {usuario.usuario}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
 
           <div className="flex flex-col w-full">
-            <label htmlFor="foto">Foto</label>
+            <label htmlFor="foto" className="text-[#c4b3b8] mb-1">Foto</label>
             <input
               type="text"
               id="foto"
               name="foto"
               placeholder="URL da Foto"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-[#523d45] bg-[#1b1417] text-[#f0e6e8] rounded p-2 focus:outline-none focus:border-[#b8869b] transition-colors"
               value = {usuario.foto}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
 
           <div className="flex flex-col w-full">
-            <label htmlFor="senha">Senha</label>
+            <label htmlFor="senha" className="text-[#c4b3b8] mb-1">Senha</label>
             <input
               type="password"
               id="senha"
               name="senha"
               placeholder="Senha"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-[#523d45] bg-[#1b1417] text-[#f0e6e8] rounded p-2 focus:outline-none focus:border-[#b8869b] transition-colors"
               value = {usuario.senha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
 
           <div className="flex flex-col w-full">
-            <label htmlFor="confirmarSenha">Confirmar Senha</label>
+            <label htmlFor="confirmarSenha" className="text-[#c4b3b8] mb-1">Confirmar Senha</label>
             <input
               type="password"
               id="confirmarSenha"
               name="confirmarSenha"
               placeholder="Confirmar Senha"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-[#523d45] bg-[#1b1417] text-[#f0e6e8] rounded p-2 focus:outline-none focus:border-[#b8869b] transition-colors"
               value={confirmarSenha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
             />
           </div>
 
-          <div className="flex justify-around w-full gap-8 mt-2">
+          <div className="flex justify-around w-full gap-4 mt-2">
             <button
               type="reset"
-              className="rounded text-white bg-red-400 hover:bg-red-700 w-1/2 py-2 transition-colors"
+              className="rounded text-white bg-[#4a262c] hover:bg-[#66313a] w-1/2 py-2.5 font-semibold transition-colors"
               onClick={retornar}
             >
               Cancelar
@@ -154,7 +151,7 @@ async function cadastrarNovoUsuario(e: FormEvent<HTMLFormElement>){
 
             <button
               type="submit"
-              className="rounded text-white bg-indigo-400 hover:bg-indigo-900 w-1/2 py-2 flex justify-center transition-colors"
+              className="rounded text-white bg-[#522a2e] hover:bg-[#6e373d] w-1/2 py-2.5 flex justify-center font-semibold transition-colors border border-[#6e373d]"
             >
             { isLoading ?
               <ClipLoader

@@ -7,51 +7,52 @@ interface CardPostagensProps {
 
 function CardPostagem({ postagem }: CardPostagensProps) {
   return (
-    <div className='border-slate-900 border flex flex-col rounded overflow-hidden justify-between'>
+    <div className='border-[#522a2e] bg-[#2c1417] text-[#d6c7cb] border flex flex-col rounded-xl overflow-hidden justify-between shadow-xl'>
 
       <div>
-        <div className="flex w-full bg-indigo-400 py-2 px-4 items-center gap-4">
+        <div className="flex w-full bg-[#422125] text-[#f5eaec] py-3 px-4 items-center gap-4 border-b border-[#522a2e]">
           <img
-            src={postagem.usuario?.foto}
-            className='h-12 rounded-full'
+            src="/perfil.jpg"
+            className='h-12 w-12 object-cover rounded-full border border-[#6e373d]'
             alt={postagem.usuario?.nome}
           />
 
-          <h3 className='text-lg font-bold text-center uppercase'>
+          <h3 className='text-lg font-extrabold text-[#f5eaec] tracking-wide uppercase'>
             {postagem.usuario?.nome}
           </h3>
         </div>
 
-        <div className='p-4'>
-          <h4 className='text-lg font-semibold uppercase'>
+        <div className='p-6'>
+          <h4 className='text-lg font-semibold uppercase text-[#f0afbf] mb-2'>
             {postagem.titulo}
           </h4>
 
-          <p>{postagem.texto}</p>
+          <p className='text-[#d6c7cb] mb-4'>{postagem.texto}</p>
 
-          <p>Tema: {postagem.tema?.descricao}</p>
+          <p className='text-sm text-[#bdaab0] mb-1'>Tema: {postagem.tema?.descricao}</p>
 
-          <p>
+          <p className='text-xs text-[#9e8990]'>
             Data:{' '}
             {new Intl.DateTimeFormat("pt-BR", {
               dateStyle: 'full',
               timeStyle: 'medium',
+              timeZone: 'America/Sao_Paulo', 
             }).format(new Date(postagem.data))}
           </p>
         </div>
       </div>
 
-      <div className="flex">
+      <div className="flex border-t border-[#522a2e]">
         <Link
           to={`/editarpostagem/${postagem.id}`}
-          className='w-full text-white bg-indigo-400 hover:bg-indigo-800 flex items-center justify-center py-2'
+          className='w-full text-white bg-[#522a2e] hover:bg-[#6e373d] flex items-center justify-center py-3 font-semibold transition-colors'
         >
           <button>Editar</button>
         </Link>
 
         <Link
           to={`/deletarpostagem/${postagem.id}`}
-          className='text-white bg-red-400 hover:bg-red-700 w-full flex items-center justify-center'
+          className='text-white bg-[#4a262c] hover:bg-[#66313a] w-full flex items-center justify-center py-3 font-semibold transition-colors border-l border-[#522a2e]'
         >
           <button>Deletar</button>
         </Link>
@@ -60,4 +61,4 @@ function CardPostagem({ postagem }: CardPostagensProps) {
   )
 }
 
-export default CardPostagem
+export default CardPostagem;

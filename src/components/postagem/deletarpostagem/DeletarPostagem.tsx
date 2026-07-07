@@ -74,31 +74,31 @@ function DeletarPostagem() {
     }
     
     return (
-        <div className='container w-1/3 mx-auto'>
-            <h1 className='text-4xl text-center my-4'>Deletar Postagem</h1>
+        <div className='flex flex-col mx-auto items-center justify-center min-h-screen bg-[#2c1417] text-[#d6c7cb] py-8 w-full px-4'>
+            <h1 className='text-4xl text-center my-4 text-[#f5eaec]'>Deletar Postagem</h1>
 
-            <p className='text-center font-semibold mb-4'>
+            <p className='text-center font-semibold mb-4 text-[#bdaab0]'>
                 Você tem certeza de que deseja apagar a postagem a seguir?
             </p>
 
-            <div className='border flex flex-col rounded-2xl overflow-hidden justify-between'>
+            <div className='border w-full max-w-lg border-[#522a2e] bg-[#2c1417] flex flex-col rounded-2xl overflow-hidden justify-between shadow-2xl'>
                 <header 
-                    className='py-2 px-6 bg-indigo-600 text-white font-bold text-2xl'>
+                    className='py-3 px-6 bg-[#422125] text-[#f0afbf] font-bold text-2xl border-b border-[#522a2e] tracking-wide'>
                     Postagem
                 </header>
-                <div className="p-4">
-                    <p className='text-xl h-full'>{postagem.titulo}</p>
-                    <p>{postagem.texto}</p>
+                <div className="p-6 bg-[#2c1417] text-[#e8dbdf] h-full">
+                    <p className='text-xl h-full font-semibold text-[#f5eaec] mb-2'>{postagem.titulo}</p>
+                    <p className='text-[#d6c7cb]'>{postagem.texto}</p>
                 </div>
-                <div className="flex">
+                <div className="flex border-t border-[#522a2e]">
                     <button 
-                        className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2'
+                        className='text-slate-100 bg-[#4a262c] hover:bg-[#66313a] w-full py-3 font-semibold transition-colors'
                         onClick={retornar}>
                         Não
                     </button>
                     <button 
-                        className='w-full text-slate-100 bg-indigo-400 
-                        hover:bg-indigo-600 flex items-center justify-center'
+                        className='w-full text-slate-100 bg-[#522a2e] hover:bg-[#6e373d] 
+                        flex items-center justify-center py-3 font-semibold transition-colors border-l border-[#522a2e]'
                         onClick={deletarPostagem}>
 
                         { isLoading ? 
@@ -116,4 +116,4 @@ function DeletarPostagem() {
     )
 }
 
-export default DeletarPostagem
+export default DeletarPostagem;

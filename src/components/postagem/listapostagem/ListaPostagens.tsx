@@ -47,22 +47,21 @@ function ListaPostagens() {
     }
 
     return (
-        <>
-
+        <div className="bg-[#2c1417] min-h-screen text-[#d6c7cb] py-6">
             {isLoading && (
                 <div className="flex justify-center w-full my-8">
                     <SyncLoader
-                        color="#312e81"
+                        color="#8c424a"
                         size={32}
                     />
                 </div>
             )}
 
-            <div className="flex justify-center w-full my-4">
+            <div className="flex justify-center w-full my-4 px-6">
                 <div className="container flex flex-col">
 
                     {(!isLoading && postagens.length === 0) && (
-                            <span className="text-3xl text-center my-8">
+                            <span className="text-3xl text-center my-8 text-[#bdaab0]">
                                 Nenhuma Postagem foi encontrada!
                             </span>
                     )}
@@ -77,7 +76,7 @@ function ListaPostagens() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 export default ListaPostagens;

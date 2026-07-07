@@ -46,33 +46,35 @@ async function buscarTemas() {
 } 
 
   return (
-    <>
+    <div className="bg-[#2c1417] min-h-screen text-[#d6c7cb] py-6">
      {isLoading && (
-    <SyncLoader
-        color="#312e81"
-        size={32}
-    />
-)}
-      <div className="flex justify-center w-full my-4">
+        <div className="flex justify-center w-full my-8">
+            <SyncLoader
+                color="#8c424a"
+                size={32}
+            />
+        </div>
+    )}
+      <div className="flex justify-center w-full my-4 px-6">
         <div className="container flex flex-col">
 
           {(!isLoading && temas.length === 0) && (
-    <span className="text-3xl text-center my-8">
-        Nenhum Tema foi encontrado!
-    </span>
-)}
+            <span className="text-3xl text-center my-8 text-[#bdaab0]">
+                Nenhum Tema foi encontrado!
+            </span>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-2
                         lg:grid-cols-3 gap-8">
             {
-    temas.map((tema) => (
-        <CardTema key={tema.id} tema={tema}/>
-    ))
-}
+                temas.map((tema) => (
+                    <CardTema key={tema.id} tema={tema}/>
+                ))
+            }
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 export default ListaTemas;
