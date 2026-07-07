@@ -1,3 +1,23 @@
+# Personal Blog Portfolio
+
+> A full-stack reactive personal blog application built with React, TypeScript, and Vite, featuring dynamic post management and clean component architecture.
+
+## 📸 Application Preview
+![Personal Blog Preview](./page.png)
+
+## 📋 About the Project
+This **Personal Blog** project serves as an interactive space for publishing thoughts, articles, and updates. Built with modern web development standards, it utilizes React Hooks (`useState`, `useEffect`), reactive routing via React Router DOM, service-based communication with Axios, and a refined interface styled with Tailwind CSS.
+
+### ✨ Key Features
+- **Dynamic Post Feed:** Seamless display and management of personal articles and entries.
+- **Full CRUD Support:** Complete operations to create, read, update, and delete blog posts and themes/categories.
+- **Responsive Layout:** Optimized for both mobile devices and widescreen displays with an elegant, modern aesthetic.
+- **Type-Safe Architecture:** Strict TypeScript interfaces ensuring robust component communication and clean data states.
+
+---
+
+*(Below are the original setup instructions from the project template)*
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
