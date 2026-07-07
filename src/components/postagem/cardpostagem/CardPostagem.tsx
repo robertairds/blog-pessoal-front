@@ -8,13 +8,13 @@ interface CardPostagensProps {
 function CardPostagem({ postagem }: CardPostagensProps) {
   return (
     <div className='border-[#522a2e] bg-[#2c1417] text-[#d6c7cb] border flex flex-col rounded-xl overflow-hidden justify-between shadow-xl'>
-
       <div>
         <div className="flex w-full bg-[#422125] text-[#f5eaec] py-3 px-4 items-center gap-4 border-b border-[#522a2e]">
           <img
-            src="/perfil.jpg"
+            // Verifica se o usuário da postagem possui foto válida, senão usa /padrao.png
+            src={postagem.usuario?.foto && postagem.usuario.foto.trim() !== "" ? postagem.usuario.foto : "/padrao.png"}
             className='h-12 w-12 object-cover rounded-full border border-[#6e373d]'
-            alt={postagem.usuario?.nome}
+            alt={postagem.usuario?.nome || "Foto de perfil"}
           />
 
           <h3 className='text-lg font-extrabold text-[#f5eaec] tracking-wide uppercase'>
