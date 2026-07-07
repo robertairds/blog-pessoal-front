@@ -12,6 +12,10 @@ function Perfil() {
     const [editandoFoto, setEditandoFoto] = useState(false)
     const [novaFoto, setNovaFoto] = useState(usuario.foto || "")
 
+    const [editandoLinks, setEditandoLinks] = useState(false)
+    const [linkedin, setLinkedin] = useState("https://www.linkedin.com/in/robertarodrigues2")
+    const [github, setGithub] = useState("https://github.com/robertairds")
+
     const [editandoSobre, setEditandoSobre] = useState(false)
     const [sobreMim, setSobreMim] = useState("Desenvolvedora em constante evolução, apaixonada por tecnologia e por transformar ideias em códigos limpos e funcionais.")
 
@@ -33,6 +37,12 @@ function Perfil() {
         usuario.foto = novaFoto
         ToastAlerta("Foto de perfil atualizada com sucesso!", "sucesso")
         setEditandoFoto(false)
+    }
+
+    function salvarLinks(e: React.FormEvent) {
+        e.preventDefault()
+        ToastAlerta("Links de redes sociais atualizados!", "sucesso")
+        setEditandoLinks(false)
     }
 
     function salvarSobre(e: React.FormEvent) {
@@ -100,20 +110,55 @@ function Perfil() {
                     </form>
                 )}
 
-                {/* Informações Básicas */}
-                <div className="pt-2 pb-5 flex flex-col bg-[#422125] text-[#f5eaec] items-center justify-center gap-1 border-t border-[#522a2e] w-full mt-4">
+                {/* Informações Básicas com Botão de Editar Redes */}
+                <div className="pt-2 pb-5 flex flex-col bg-[#422125] text-[#f5eaec] items-center justify-center gap-1 border-t border-[#522a2e] w-full mt-4 relative">
+                    <button 
+                        onClick={() => setEditandoLinks(!editandoLinks)} 
+                        className="absolute top-3 right-4 text-[#f0afbf] hover:text-white transition-colors flex items-center gap-1 text-xs font-semibold"
+                        title="Editar redes sociais"
+                    >
+                        <PencilSimple size={16} weight="bold" /> Editar Links
+                    </button>
+
                     <p className="font-bold text-2xl text-[#f0afbf]">{usuario.nome}</p>
                     <p className="text-sm text-[#bdaab0]">{usuario.usuario}</p>
                     
                     <div className="flex gap-3 mt-2">
-                        <a href="https://www.linkedin.com/in/robertarodrigues2" target="_blank" rel="noopener noreferrer" className="hover:text-[#f0afbf] transition-colors">
+                        <a href={linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-[#f0afbf] transition-colors">
                             <LinkedinLogo size={26} weight="bold" />
                         </a>
-                        <a href="https://github.com/robertairds" target="_blank" rel="noopener noreferrer" className="hover:text-[#f0afbf] transition-colors">
+                        <a href={github} target="_blank" rel="noopener noreferrer" className="hover:text-[#f0afbf] transition-colors">
                             <GithubLogo size={26} weight="bold" />
                         </a>
                     </div>
                 </div>
+
+                {/* Caixa de Input para Editar os Links do LinkedIn e GitHub */}
+                {editandoLinks && (
+                    <form onSubmit={salvarLinks} className="bg-[#32171c] px-6 py-4 border-b border-[#522a2e] flex flex-col gap-3 w-full max-w-md mx-auto rounded-xl my-2">
+                        <div className="flex flex-col gap-1">
+                            <label className="text-xs font-semibold text-[#f0afbf]">Link do LinkedIn:</label>
+                            <input
+                                type="text"
+                                value={linkedin}
+                                onChange={(e) => setLinkedin(e.target.value)}
+                                className="w-full bg-[#231b1f] border border-[#522a2e] text-[#f5eaec] text-xs px-3 py-2 rounded-lg focus:outline-none focus:border-[#f0afbf]"
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label className="text-xs font-semibold text-[#f0afbf]">Link do GitHub:</label>
+                            <input
+                                type="text"
+                                value={github}
+                                onChange={(e) => setGithub(e.target.value)}
+                                className="w-full bg-[#231b1f] border border-[#522a2e] text-[#f5eaec] text-xs px-3 py-2 rounded-lg focus:outline-none focus:border-[#f0afbf]"
+                            />
+                        </div>
+                        <button type="submit" className="self-end bg-[#6e373d] text-[#f5eaec] text-xs font-bold px-4 py-2 rounded-lg hover:bg-[#8c424a] transition-colors mt-1">
+                            Salvar Links
+                        </button>
+                    </form>
+                )}
 
                 {/* Seção Sobre Mim e Habilidades */}
                 <div className="bg-[#231b1f] p-10 flex flex-col gap-8 w-full border-t border-[#3d2c33]">

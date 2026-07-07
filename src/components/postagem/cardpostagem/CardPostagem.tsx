@@ -1,18 +1,25 @@
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
 import type Postagem from '../../../models/Postagem'
+import { AuthContext } from '../../../contexts/AuthContext' // Ajuste o caminho se necessário
 
 interface CardPostagensProps {
   postagem: Postagem
 }
 
 function CardPostagem({ postagem }: CardPostagensProps) {
+  const { usuario } = useContext(AuthContext)
+
+  // Se o autor da postagem for o mesmo usuário logado atualmente, usa a foto atualizada do contexto do usuário
+  const ehMeuPerfil = usuario.id === postagem.usuario?.id
+  const fotoParaExibir = ehMeuPerfil && usuario.foto ? usuario.foto : postagem.usuario?.foto
+
   return (
     <div className='border-[#522a2e] bg-[#2c1417] text-[#d6c7cb] border flex flex-col rounded-xl overflow-hidden justify-between shadow-xl'>
       <div>
         <div className="flex w-full bg-[#422125] text-[#f5eaec] py-3 px-4 items-center gap-4 border-b border-[#522a2e]">
           <img
-            // Verifica se o usuário da postagem possui foto válida, senão usa /padrao.png
-            src={postagem.usuario?.foto && postagem.usuario.foto.trim() !== "" ? postagem.usuario.foto : "/padrao.png"}
+            src={fotoParaExibir && fotoParaExibir.trim() !== "" ? fotoParaExibir : "/padrao.png"}
             className='h-12 w-12 object-cover rounded-full border border-[#6e373d]'
             alt={postagem.usuario?.nome || "Foto de perfil"}
           />
