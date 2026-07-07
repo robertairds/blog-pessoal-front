@@ -1,1 +1,18 @@
 @import "tailwindcss";
+/* Toast de Sucesso (Personalizado com o tom vinho do seu projeto) */
+.Toastify__toast--success.Toastify__toast-theme--colored {
+    background-color: #3d2c33 !important;
+    color: #f5eaec !important;
+}
+
+/* Toast de Erro (Personalizado com o tom avermelhado do seu tema) */
+.Toastify__toast--error.Toastify__toast-theme--colored {
+    background-color: #522a2e !important;
+    color: #f5eaec !important;
+}
+
+/* Toast de Info (Personalizado com o tom marrom escuro/secundário) */
+.Toastify__toast--info.Toastify__toast-theme--colored {
+    background-color: #522a2e !important;
+    color: #f5eaec !important;
+}

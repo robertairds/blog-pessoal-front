@@ -24,7 +24,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     usuario: "",
     senha: "",
     foto: "",
-    token: "",
+    token: "", //token
   })
 
   const [isLoading, setIsLoading] = useState(false)

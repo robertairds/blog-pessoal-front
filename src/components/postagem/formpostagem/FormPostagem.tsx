@@ -7,7 +7,11 @@ import type Tema from "../../../models/Tema";
 import { buscar, atualizar, cadastrar } from "../../../services/Service";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
 
-function FormPostagem() {
+interface FormPostagemProps {
+    isModal?: boolean; // Prop opcional para saber se está dentro do modal
+}
+
+function FormPostagem({ isModal = false }: FormPostagemProps) {
 
     const navigate = useNavigate();
 
@@ -141,14 +145,15 @@ function FormPostagem() {
     const carregandoTema = tema.descricao === '';
 
     return (
-        <div className="flex flex-col mx-auto items-center justify-center min-h-screen bg-[#2c1417] text-[#d6c7cb] py-8 w-full px-4">
-            <h1 className="text-4xl text-center my-8 text-[#f5eaec]">
+        /* Se for modal, tira o min-h-screen e usa um py menor; se não for, ocupa a tela inteira */
+        <div className={`flex flex-col mx-auto items-center justify-center bg-[#2c1417] text-[#d6c7cb] w-full px-4 ${isModal ? 'py-2' : 'min-h-screen py-8'}`}>
+            <h1 className={`text-3xl text-center text-[#f5eaec] ${isModal ? 'my-2 text-2xl' : 'my-6 text-4xl'}`}>
                 {id !== undefined ? 'Editar Postagem' : 'Cadastrar Postagem'}
             </h1>
 
-            <form className="flex flex-col w-full max-w-lg gap-4 bg-[#231b1f] p-8 rounded-2xl border border-[#3d2c33] shadow-2xl"
+            <form className="flex flex-col w-full max-w-lg gap-3 bg-[#231b1f] p-6 rounded-2xl border border-[#3d2c33] shadow-2xl"
                 onSubmit={gerarNovaPostagem}>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1.5">
                     <label htmlFor="titulo" className="text-[#c4b3b8]">Título da Postagem</label>
                     <input
                         type="text"
@@ -161,7 +166,7 @@ function FormPostagem() {
                     />
                 </div>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1.5">
                     <label htmlFor="texto" className="text-[#c4b3b8]">Texto da Postagem</label>
                     <input
                         type="text"
@@ -174,7 +179,7 @@ function FormPostagem() {
                     />
                 </div>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1.5">
                     <p className="text-[#c4b3b8]">Tema da Postagem</p>
                     <select name="tema" id="tema" className='border-2 p-2 border-[#522a2e] bg-[#2c1417] text-[#f0e6e8] rounded focus:outline-none focus:border-[#8c424a] transition-colors'
                           onChange={(e) => buscarTemaPorId(e.currentTarget.value)} 
@@ -191,13 +196,13 @@ function FormPostagem() {
                 <button
                     type='submit'
                     className='rounded disabled:bg-[#201013] disabled:text-[#7d5f64] bg-[#522a2e] hover:bg-[#6e373d]
-                                text-white font-bold w-1/2 mx-auto py-3 flex justify-center transition-colors mt-2 border border-[#6e373d]'
+                                text-white font-bold w-1/2 mx-auto py-2.5 flex justify-center transition-colors mt-1 border border-[#6e373d]'
                             disabled={carregandoTema}
                 >
                     { isLoading ?
                         <ClipLoader  
                            color="#ffffff"
-                           size={24}
+                           size={22}
                         /> :
                         <span>{id === undefined ? 'Cadastrar' : 'Atualizar'}</span>
                     }

@@ -1,49 +1,61 @@
-import { useContext, type ReactNode } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
-import { ToastAlerta } from "../../utils/ToastAlerta";
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
+import { ToastAlerta } from '../../utils/ToastAlerta'
 
 function Navbar() {
-
-    const navigate = useNavigate();
-    const { usuario, handleLogout } = useContext(AuthContext);
+    const navigate = useNavigate()
+    const { usuario, handleLogout } = useContext(AuthContext)
 
     function logout() {
-        handleLogout();
-        ToastAlerta('O Usuário foi desconectado com sucesso!', 'info');
-        navigate('/');
+        handleLogout()
+        ToastAlerta("O usuário foi desconectado com sucesso.", "sucesso")
+        navigate('/')
     }
 
-    let component: ReactNode;
+    let component
 
     if (usuario.token !== "") {
+        const navLinkStyle = ({ isActive }: { isActive: boolean }) => 
+            `px-3.5 py-2 rounded-xl transition-colors font-medium text-base ${
+                isActive 
+                    ? 'bg-[#6e373d] text-[#f5eaec] font-bold border border-[#8c424a]' 
+                    : 'hover:bg-[#522a2e] text-[#d6c7cb]'
+            }`
+
         component = (
-            <div className='w-full flex justify-center py-4 bg-[#422125] text-[#f5eaec] border-b border-[#522a2e]'>
-                <div className="container flex justify-between text-lg mx-8 items-center">
-                    <Link to='/home' className="text-2xl font-bold tracking-wider text-[#f5eaec] hover:text-[#f0afbf] transition-colors">Blog Pessoal</Link>
+            <div className='w-full bg-[#422125] text-[#f5eaec] py-4 px-8 flex justify-between items-center border-b border-[#522a2e]'>
+                <NavLink to="/home" className="text-xl font-bold tracking-wide">
+                    Home
+                </NavLink>
 
-                    <div className='flex gap-6 items-center'>
-                        <Link to='/postagens' className='hover:text-[#f0afbf] transition-colors'>Postagens</Link>
-                        <Link to='/temas' className='hover:text-[#f0afbf] transition-colors'>Temas</Link>
-                        <Link to='/cadastrartema' className='hover:text-[#f0afbf] transition-colors'>Cadastrar tema</Link>
-                        
-                        {/* Texto "Usuario" com cor neutra mais suave (#d6c7cb) */}
-                        <Link to='/perfil' className='flex items-center gap-2.5 hover:text-[#f0afbf] transition-colors'>
-                            <span className="text-[#d6c7cb]">Usuario</span>
-                        </Link>
-
-                        <Link to='' onClick={logout} className='hover:text-[#f0afbf] transition-colors'>Sair</Link>
-                    </div>
+                <div className='flex gap-4 items-center'>
+                    <NavLink to="/postagens" className={navLinkStyle}>
+                        Postagens
+                    </NavLink>
+                    <NavLink to="/temas" className={navLinkStyle}>
+                        Temas
+                    </NavLink>
+                    {/* Rota corrigida com o 'r' em cadastrar */}
+                    <NavLink to="/cadastrartema" className={navLinkStyle}>
+                        Cadastrar tema
+                    </NavLink>
+                    <NavLink to="/perfil" className={navLinkStyle}>
+                        Usuário
+                    </NavLink>
+                    <button onClick={logout} className='hover:bg-[#522a2e] px-3.5 py-2 rounded-xl transition-colors text-[#d6c7cb] text-base font-medium'>
+                        Sair
+                    </button>
                 </div>
             </div>
-        );
+        )
     }
 
     return (
         <>
             {component}
         </>
-    );
+    )
 }
 
-export default Navbar;
+export default Navbar

@@ -22,9 +22,9 @@ function Home() {
 
                     <div className="flex justify-center">
                         <img
-                            src="/home.png"
+                            src="/principal.png"
                             alt="Imagem Página Home"
-                            className='w-2/3 drop-shadow-[0_10px_15px_rgba(0,0,0,0.6)]'
+                            className='w-2/3 drop-shadow-[0_10px_15px_rgba(0,0,0,0.7)]'
                         />
                     </div>
                 </div>
